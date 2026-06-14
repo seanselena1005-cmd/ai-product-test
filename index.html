@@ -1,0 +1,1371 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MBTI Career 职场优势报告预览</title>
+  <style>
+    :root {
+      --bg: #09111f;
+      --bg-soft: #111a2b;
+      --panel: rgba(18, 30, 50, 0.78);
+      --panel-strong: rgba(28, 43, 68, 0.92);
+      --line: rgba(255, 255, 255, 0.13);
+      --text: #f7fbff;
+      --muted: #aebbd0;
+      --soft: #dfe8f7;
+      --cyan: #39d7f4;
+      --mint: #62e2ad;
+      --amber: #ffd166;
+      --rose: #ff6b9a;
+      --violet: #9d7cff;
+      --blue: #5ba8ff;
+      --orange: #ff9b54;
+      --green: #78e08f;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+      --radius: 24px;
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(57, 215, 244, 0.24), transparent 28%),
+        radial-gradient(circle at 88% 2%, rgba(255, 107, 154, 0.17), transparent 30%),
+        radial-gradient(circle at 74% 72%, rgba(98, 226, 173, 0.14), transparent 30%),
+        linear-gradient(145deg, #070c16 0%, #0e1728 45%, #111827 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 82%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(from 160deg, var(--cyan), var(--violet), var(--rose), var(--amber), var(--mint), var(--cyan));
+      color: #06101c;
+      font-weight: 900;
+      letter-spacing: 0;
+      box-shadow: 0 14px 32px rgba(57, 215, 244, 0.24);
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .button-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .primary-btn,
+    .ghost-btn {
+      min-height: 42px;
+      border-radius: 999px;
+      padding: 0 16px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .primary-btn {
+      color: #07101b;
+      background: linear-gradient(135deg, #6df3ca, #45d4ff 48%, #b49cff);
+      box-shadow: 0 16px 44px rgba(69, 212, 255, 0.24);
+    }
+
+    .ghost-btn {
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+    }
+
+    .primary-btn:hover,
+    .ghost-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: 22px;
+      padding: 30px;
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(22, 38, 63, 0.9), rgba(18, 27, 46, 0.8)),
+        radial-gradient(circle at 22% 18%, rgba(57, 215, 244, 0.24), transparent 30%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -170px;
+      top: -150px;
+      background: conic-gradient(from 20deg, rgba(255, 209, 102, 0.44), rgba(255, 107, 154, 0.4), rgba(91, 168, 255, 0.38), rgba(98, 226, 173, 0.36), rgba(255, 209, 102, 0.44));
+      border-radius: 50%;
+      filter: blur(4px);
+      opacity: 0.78;
+      z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      border-radius: 999px;
+      color: #dffaff;
+      background: rgba(57, 215, 244, 0.12);
+      border: 1px solid rgba(57, 215, 244, 0.28);
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 16px var(--mint);
+    }
+
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(34px, 6vw, 78px);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .gradient-text {
+      background: linear-gradient(120deg, #ffffff 0%, #8feeff 28%, #b7a4ff 58%, #ffd982 92%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-lead {
+      max-width: 760px;
+      margin: 0 0 20px;
+      color: var(--soft);
+      font-size: clamp(16px, 2vw, 21px);
+      line-height: 1.72;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.07);
+      padding: 16px;
+    }
+
+    .stat-value {
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .stat-label {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .character-card {
+      position: relative;
+      min-height: 360px;
+      border-radius: 28px;
+      padding: 18px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.24), transparent 24%),
+        linear-gradient(165deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.06));
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 44px 36px auto;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.26);
+      transform: rotate(-10deg);
+    }
+
+    .avatar {
+      position: relative;
+      width: min(230px, 70vw);
+      height: 230px;
+      margin: 38px auto 0;
+    }
+
+    .person-glow,
+    .hair,
+    .face,
+    .neck,
+    .body,
+    .arm,
+    .hand,
+    .tool,
+    .cape {
+      position: absolute;
+    }
+
+    .person-glow {
+      width: 194px;
+      height: 194px;
+      left: 18px;
+      top: 8px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--avatar-a), var(--avatar-b));
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+      opacity: 0.94;
+      z-index: 0;
+    }
+
+    .hair {
+      width: 114px;
+      height: 92px;
+      left: 58px;
+      top: 22px;
+      border-radius: 54px 54px 34px 34px;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.18), transparent 22%),
+        linear-gradient(145deg, #17243a, #07101b);
+      box-shadow: inset -12px -10px 0 rgba(255, 255, 255, 0.05);
+      z-index: 3;
+    }
+
+    .hair::before {
+      content: "";
+      position: absolute;
+      left: -13px;
+      top: 38px;
+      width: 44px;
+      height: 52px;
+      border-radius: 24px 20px 22px 24px;
+      background: #0b1524;
+      transform: rotate(18deg);
+    }
+
+    .hair::after {
+      content: "";
+      position: absolute;
+      right: -10px;
+      top: 34px;
+      width: 40px;
+      height: 58px;
+      border-radius: 22px 26px 24px 18px;
+      background: #0b1524;
+      transform: rotate(-13deg);
+    }
+
+    .face {
+      width: 100px;
+      height: 102px;
+      left: 65px;
+      top: 58px;
+      border-radius: 40px 40px 46px 46px;
+      background:
+        radial-gradient(circle at 34% 46%, #07101b 0 5px, transparent 6px),
+        radial-gradient(circle at 66% 46%, #07101b 0 5px, transparent 6px),
+        radial-gradient(ellipse at 50% 69%, rgba(255, 111, 145, 0.5) 0 10px, transparent 11px),
+        linear-gradient(145deg, #ffe0c2, #ffc593);
+      box-shadow: inset 0 -10px 0 rgba(122, 71, 46, 0.1), 0 18px 36px rgba(0, 0, 0, 0.2);
+      z-index: 4;
+    }
+
+    .face::before,
+    .face::after {
+      content: "";
+      position: absolute;
+      top: 56px;
+      width: 12px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 122, 144, 0.38);
+    }
+
+    .face::before {
+      left: 18px;
+    }
+
+    .face::after {
+      right: 18px;
+    }
+
+    .neck {
+      width: 34px;
+      height: 34px;
+      left: 98px;
+      top: 148px;
+      border-radius: 0 0 16px 16px;
+      background: #f2b27d;
+      z-index: 2;
+    }
+
+    .body {
+      width: 138px;
+      height: 92px;
+      left: 46px;
+      top: 168px;
+      border-radius: 50px 50px 26px 26px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent 42%),
+        linear-gradient(145deg, var(--avatar-b), var(--avatar-a));
+      box-shadow: 0 24px 52px rgba(0, 0, 0, 0.26);
+      z-index: 2;
+    }
+
+    .body::before {
+      content: "";
+      position: absolute;
+      left: 48px;
+      top: 0;
+      width: 42px;
+      height: 42px;
+      background: #fff2df;
+      clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+      opacity: 0.94;
+    }
+
+    .arm {
+      width: 56px;
+      height: 96px;
+      right: 23px;
+      top: 154px;
+      border-radius: 26px;
+      background: linear-gradient(145deg, var(--avatar-a), var(--avatar-b));
+      transform: rotate(-28deg);
+      transform-origin: top center;
+      z-index: 4;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .hand {
+      width: 34px;
+      height: 34px;
+      right: 14px;
+      top: 216px;
+      border-radius: 50%;
+      background: #ffc593;
+      z-index: 6;
+    }
+
+    .tool {
+      width: 116px;
+      height: 78px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent),
+        var(--avatar-c);
+      transform: rotate(-12deg);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.2);
+      z-index: 5;
+    }
+
+    .tool::before {
+      content: "";
+      position: absolute;
+      inset: 17px;
+      border-top: 3px solid rgba(7, 17, 29, 0.55);
+      border-bottom: 3px solid rgba(7, 17, 29, 0.35);
+    }
+
+    .cape {
+      left: 20px;
+      bottom: 2px;
+      width: 190px;
+      height: 112px;
+      border-radius: 76px 76px 24px 24px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      z-index: 1;
+    }
+
+    .role-name {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(5, 11, 20, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .role-name strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .role-name span {
+      color: var(--muted);
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 9px 11px;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 22px 22px 8px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .card-desc {
+      margin: 7px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 13px;
+    }
+
+    .card-body {
+      padding: 18px 22px 22px;
+    }
+
+    .riasec-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr) 44px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .score-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--soft);
+      font-weight: 800;
+    }
+
+    .color-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--color);
+      box-shadow: 0 0 16px color-mix(in srgb, var(--color), transparent 45%);
+      flex: 0 0 auto;
+    }
+
+    .track {
+      height: 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .fill {
+      width: var(--value);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--color), color-mix(in srgb, var(--color), #fff 28%));
+      box-shadow: 0 0 24px color-mix(in srgb, var(--color), transparent 35%);
+    }
+
+    .score-num {
+      text-align: right;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .style-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .axis {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .axis-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .axis-line {
+      position: relative;
+      height: 12px;
+      margin: 13px 0 9px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--left), rgba(255, 255, 255, 0.16), var(--right));
+    }
+
+    .axis-thumb {
+      position: absolute;
+      top: 50%;
+      left: var(--pos);
+      width: 22px;
+      height: 22px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: #fff;
+      border: 5px solid var(--accent);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .axis-note {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 12px;
+    }
+
+    .jobs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .job {
+      min-height: 128px;
+      padding: 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.045)),
+        radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--job), transparent 65%), transparent 46%);
+    }
+
+    .job strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .job-score {
+      display: inline-flex;
+      margin-top: 10px;
+      color: #07101b;
+      background: var(--job);
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .job p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 12px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .pill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 9px 12px;
+      color: #07101b;
+      font-weight: 900;
+      font-size: 12px;
+      background: var(--pill);
+    }
+
+    .warning-list,
+    .action-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .warning-list li,
+    .action-list li {
+      padding: 13px 14px;
+      border-radius: 17px;
+      color: var(--soft);
+      line-height: 1.65;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+    }
+
+    .ai-report {
+      color: #eef6ff;
+      line-height: 1.92;
+      font-size: 15px;
+      white-space: pre-line;
+    }
+
+    .report-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .mini-tag {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.07);
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .poster {
+      min-height: 520px;
+      display: grid;
+      align-content: space-between;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 30% 14%, color-mix(in srgb, var(--avatar-a), transparent 35%), transparent 28%),
+        radial-gradient(circle at 78% 50%, color-mix(in srgb, var(--avatar-b), transparent 40%), transparent 30%),
+        linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .poster-kicker {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .poster h3 {
+      margin: 12px 0 0;
+      font-size: 38px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .poster-avatar {
+      position: relative;
+      width: 210px;
+      height: 210px;
+      margin: 22px auto;
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at 50% 32%, #ffe0c2 0 38px, transparent 39px),
+        radial-gradient(ellipse at 50% 31%, #0b1524 0 54px, transparent 55px),
+        radial-gradient(ellipse at 50% 78%, var(--avatar-a) 0 70px, transparent 71px),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 22px 62px rgba(0, 0, 0, 0.24);
+    }
+
+    .poster-avatar::before {
+      content: "";
+      position: absolute;
+      left: 79px;
+      top: 68px;
+      width: 52px;
+      height: 24px;
+      background:
+        radial-gradient(circle at 25% 45%, #07101b 0 4px, transparent 5px),
+        radial-gradient(circle at 75% 45%, #07101b 0 4px, transparent 5px);
+    }
+
+    .poster-avatar::after {
+      content: "";
+      position: absolute;
+      left: 96px;
+      top: 113px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffc593;
+      box-shadow: 0 34px 0 30px var(--avatar-b);
+    }
+
+    .poster-bottom {
+      display: grid;
+      gap: 12px;
+    }
+
+    .poster-line {
+      color: #eff8ff;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .quote {
+      border-left: 4px solid var(--mint);
+      padding: 10px 0 10px 14px;
+      color: var(--soft);
+      line-height: 1.75;
+      background: linear-gradient(90deg, rgba(98, 226, 173, 0.08), transparent);
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .section-grid,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .jobs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 22px, 1180px);
+        padding-top: 16px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .button-row {
+        width: 100%;
+        justify-content: stretch;
+      }
+
+      .primary-btn,
+      .ghost-btn {
+        flex: 1;
+        padding: 0 10px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .hero-stats,
+      .jobs {
+        grid-template-columns: 1fr;
+      }
+
+      .card-header {
+        flex-direction: column;
+      }
+
+      .score-row {
+        grid-template-columns: 82px minmax(0, 1fr) 36px;
+        gap: 9px;
+      }
+
+      .poster h3 {
+        font-size: 31px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">M</div>
+        <div>
+          <div class="brand-title">MBTI Career</div>
+          <div class="brand-subtitle">职业优势人格 · AI 结果报告预览</div>
+        </div>
+      </div>
+      <div class="button-row">
+        <button class="ghost-btn" type="button" id="scrollReport">查看 AI 点评</button>
+        <button class="primary-btn" type="button" id="switchResult">换一个模拟结果</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span><span id="stage">职场新人 / 转行探索者</span></div>
+        <h1><span class="gradient-text" id="resultCode">IAC-INTJ</span><br><span id="careerName">系统型研究设计师</span></h1>
+        <p class="hero-lead" id="summary">你更像一个先看清系统结构，再把复杂问题拆成可执行方案的人。适合优先探索需要研究、设计、分析与长期规划的工作内容。</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-value" id="interestMatch">88</div>
+            <div class="stat-label">职业兴趣匹配度</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="styleClarity">76</div>
+            <div class="stat-label">职场风格清晰度</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="confidence">高</div>
+            <div class="stat-label">结果可信度</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="character-card" aria-label="职业角色视觉卡">
+        <div class="orbit"></div>
+        <div class="avatar">
+          <div class="person-glow"></div>
+          <div class="cape"></div>
+          <div class="hair"></div>
+          <div class="face"></div>
+          <div class="neck"></div>
+          <div class="body"></div>
+          <div class="arm"></div>
+          <div class="hand"></div>
+          <div class="tool"></div>
+        </div>
+        <div class="role-name">
+          <div>
+            <strong id="roleName">岚图设计师</strong>
+            <span id="roleLine">我不急着出手，我先看清整盘棋。</span>
+          </div>
+          <div class="badge" id="styleType">INTJ</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section-grid">
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">RIASEC 职业兴趣分布</h2>
+            <p class="card-desc">六色分布表示你对不同工作内容的天然吸引力。前 3 项组成职业兴趣代码。</p>
+          </div>
+          <div class="mini-tag" id="interestCode">IAC</div>
+        </div>
+        <div class="card-body">
+          <div class="riasec-list" id="riasecList"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">职场风格倾向</h2>
+            <p class="card-desc">这里解释你更适合怎样工作，而不是限制你只能成为哪一种人。</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="style-grid" id="styleAxes"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">适合优先探索的岗位</h2>
+          <p class="card-desc">岗位推荐主要来自 RIASEC 分数，职场风格只作为工作方式补充。</p>
+        </div>
+        <div class="report-meta">
+          <span class="mini-tag">Top 3 强推荐</span>
+          <span class="mini-tag">Top 4-8 可探索</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="jobs" id="jobs"></div>
+      </div>
+    </section>
+
+    <section class="two-column">
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">优势标签</h2>
+            <p class="card-desc">这些关键词适合放进简历、作品集、面试表达和自我介绍里。</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="pill-cloud" id="strengths"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">不建议优先选择的环境</h2>
+            <p class="card-desc">这不是不能做，而是初期探索时可能更消耗，需要额外验证。</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="warning-list" id="warnings"></ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="section-grid">
+      <article class="card" id="reportCard">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">AI 个性化点评</h2>
+            <p class="card-desc">以下为模拟 AI 生成内容，基于结构化分数解释，不改变测评结果。</p>
+          </div>
+          <div class="report-meta">
+            <span class="mini-tag" id="reportCount">约 780 字</span>
+            <span class="mini-tag">非心理诊断</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="ai-report" id="aiReport"></div>
+        </div>
+      </article>
+
+      <aside class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">分享海报预览</h2>
+            <p class="card-desc">用于模拟用户截图保存或分享到朋友圈的视觉效果。</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="poster">
+            <div>
+              <div class="poster-kicker">我的职场优势人格</div>
+              <h3 id="posterTitle">系统型研究设计师</h3>
+            </div>
+            <div class="poster-avatar"></div>
+            <div class="poster-bottom">
+              <div class="poster-line" id="posterLine">IAC-INTJ · 适合研究、设计、分析与长期规划</div>
+              <div class="quote" id="posterQuote">我不急着出手，我先看清整盘棋。</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="two-column">
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">未来 30 天行动建议</h2>
+            <p class="card-desc">把测评结果变成能验证的行动，而不是停留在标签里。</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="action-list" id="actions"></ul>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">面试表达建议</h2>
+            <p class="card-desc">把性格特点翻译成雇主能理解的职场价值。</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="quote" id="interview"></div>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer-note">本页面为 MBTI Career 单页原型预览。内容仅用于职业探索与产品演示，不构成心理诊断或人生结论。</p>
+  </main>
+
+  <script>
+    const colorMap = {
+      R: { name: "现实型 R", color: "#ff9b54" },
+      I: { name: "研究型 I", color: "#39d7f4" },
+      A: { name: "艺术型 A", color: "#ff6b9a" },
+      S: { name: "社会型 S", color: "#78e08f" },
+      E: { name: "企业型 E", color: "#ffd166" },
+      C: { name: "常规型 C", color: "#9d7cff" }
+    };
+
+    const results = [
+      {
+        code: "IAC-INTJ",
+        interestCode: "IAC",
+        style: "INTJ",
+        name: "系统型研究设计师",
+        stage: "职场新人 / 转行探索者",
+        summary: "你更像一个先看清系统结构，再把复杂问题拆成可执行方案的人。适合优先探索需要研究、设计、分析与长期规划的工作内容。",
+        roleName: "岚图设计师",
+        roleLine: "我不急着出手，我先看清整盘棋。",
+        colors: ["#39d7f4", "#9d7cff", "#62e2ad"],
+        stats: { interest: 88, clarity: 76, confidence: "高" },
+        scores: { R: 33, I: 88, A: 79, S: 63, E: 45, C: 70 },
+        axes: [
+          ["I", "内部驱动", 76, "更适合先独立思考，再拿出完整方案。"],
+          ["N", "趋势洞察", 82, "擅长从零散信息中看到模式、机会和长期方向。"],
+          ["T", "逻辑判断", 78, "做决定时更重视因果、效率和系统性证据。"],
+          ["J", "规划推进", 70, "喜欢把目标拆解成步骤，并推动事情稳定收口。"]
+        ],
+        jobs: [
+          ["用户研究员", 86, "访谈洞察、研究分析、用户理解"],
+          ["数据分析师", 82, "数据处理、逻辑分析、细节准确"],
+          ["产品经理", 78, "需求分析、系统判断、跨部门推动"],
+          ["AI 应用运营", 73, "工具探索、内容设计、场景落地"],
+          ["品牌策略助理", 71, "策略定位、表达框架、审美判断"],
+          ["软件开发", 69, "问题拆解、系统构建、逻辑实现"],
+          ["法务/政策研究助理", 66, "规则理解、文本审查、严谨判断"],
+          ["咨询顾问助理", 64, "结构化分析、行业研究、方案表达"]
+        ],
+        strengths: ["系统思考", "深度研究", "长期规划", "独立判断", "抽象建模", "审美表达"],
+        warnings: [
+          "不建议一开始就进入长期高频社交、低自主度且缺少深度思考空间的岗位。",
+          "如果工作只要求快速重复执行，而没有复盘、优化和结构化空间，可能较难持续投入。",
+          "需要警惕过度等待完美方案，真实职业探索中可以先用小项目验证。"
+        ],
+        actions: [
+          "第 1 周：选一个目标岗位，拆解 10 条招聘 JD，标出反复出现的能力词。",
+          "第 2 周：完成一个小型分析或研究作品，用数据、访谈或竞品拆解证明你的判断。",
+          "第 3 周：找 2 位从业者访谈，验证岗位真实日常是否符合你的期待。",
+          "第 4 周：把作品整理成简历项目，用“问题、方法、发现、建议”四段表达。"
+        ],
+        interview: "我比较擅长在信息复杂、目标不够清晰的情况下建立分析框架。过去做项目时，我会先定义问题，再收集证据和用户反馈，最后把发现转化成可执行建议。这让我更适合研究、产品、数据或策略类岗位。",
+        report: `一句话总结：你的结果显示，你不是单纯追求稳定或热闹的人，而是更容易被“复杂问题背后的规律”吸引。IAC 的职业兴趣组合说明你对研究、表达和结构化整理都有明显兴趣；INTJ 的职场风格则显示，你更适合在有一定自主度、允许深度思考、能够把判断沉淀成系统方案的环境里发挥。
+
+你的核心优势在于“先理解，再设计”。很多人在面对任务时会急着行动，而你更倾向于先看清目标、限制条件、信息之间的关系，再决定从哪里切入。这种方式在用户研究、数据分析、产品规划、AI 应用运营、策略助理等岗位中很有价值，因为这些工作并不只看执行速度，更看你能不能把模糊问题讲清楚，把零散信号整理成方向。
+
+你和别人不同的地方，是你同时具备研究型的理性和艺术型的表达敏感。也就是说，你不满足于只得出一个结论，还会在意这个结论能否被别人理解、是否有清晰结构、能否转化成一份像样的报告、方案或作品。这会让你在求职时比只会“想很多”的人更容易被看见。建议你把自己的优势包装为：擅长问题拆解、证据分析、用户洞察和结构化表达。
+
+岗位上，你适合优先探索用户研究员、数据分析师、产品经理、AI 应用运营这类方向。它们都需要你在信息不完整时建立判断，并把判断转化成可执行建议。需要避开的坑是：过早进入纯执行、强社交消耗、规则僵硬且没有复盘空间的岗位。你不是不能做这些工作，而是如果长期缺少思考深度和自主空间，容易感到价值感不足。
+
+面试时，不要只说自己“逻辑强”或“喜欢思考”，可以具体表达为：我擅长把复杂问题拆成可验证的问题，并通过数据、访谈或资料研究形成建议。未来 30 天，你最该做的是用一个小作品证明自己。比如拆解一个产品的用户体验，分析一类岗位的能力要求，或完成一份行业观察。真实作品会比人格标签更能帮助你靠近机会。`
+      },
+      {
+        code: "SEA-ENFJ",
+        interestCode: "SEA",
+        style: "ENFJ",
+        name: "共识型成长教练",
+        stage: "未毕业学生 / 初入职场",
+        summary: "你擅长把人的需求、团队目标和表达方式连接起来。适合优先探索教育培训、用户运营、客户成功与组织发展相关方向。",
+        roleName: "星桥教练",
+        roleLine: "我让每个人都看见自己可以往哪里走。",
+        colors: ["#78e08f", "#ffd166", "#ff6b9a"],
+        stats: { interest: 85, clarity: 72, confidence: "高" },
+        scores: { R: 24, I: 58, A: 76, S: 85, E: 74, C: 49 },
+        axes: [
+          ["E", "外部驱动", 80, "在交流、反馈和团队讨论中更容易被点燃。"],
+          ["N", "趋势洞察", 66, "能从人的变化和场景需求中看见未来机会。"],
+          ["F", "价值共情", 84, "做决定时会认真考虑人的感受、关系和意义。"],
+          ["J", "规划推进", 68, "希望把善意变成流程、计划和可持续行动。"]
+        ],
+        jobs: [
+          ["培训/课程顾问", 88, "表达引导、用户成长、学习设计"],
+          ["客户成功", 84, "客户服务、问题解决、续约推动"],
+          ["社群运营", 80, "用户关系、活动组织、氛围维护"],
+          ["人力资源", 75, "人际理解、流程管理、组织支持"],
+          ["教师/助教", 73, "知识表达、耐心支持、成长反馈"],
+          ["用户研究员", 70, "倾听访谈、洞察表达、体验理解"],
+          ["品牌策划", 68, "价值表达、策略定位、审美判断"],
+          ["市场营销", 65, "用户需求、传播影响、商业转化"]
+        ],
+        strengths: ["共情倾听", "组织共识", "表达引导", "团队支持", "成长反馈", "服务设计"],
+        warnings: [
+          "不建议优先选择长期独立、低反馈、人与人连接很少的岗位环境。",
+          "需要避免为了维持关系而过度承担，职业早期要练习清晰边界。",
+          "如果岗位只看短期转化而忽视用户体验，你可能会感到价值冲突。"
+        ],
+        actions: [
+          "第 1 周：整理 3 个你帮助他人解决问题或推动协作的真实经历。",
+          "第 2 周：尝试设计一次小型分享、课程、社群活动或用户访谈。",
+          "第 3 周：访谈教育、运营、客户成功方向从业者，记录真实工作压力。",
+          "第 4 周：把经历改写成 STAR 案例，突出目标、行动、反馈和结果。"
+        ],
+        interview: "我比较擅长理解人的需求，并把分散意见整理成大家愿意行动的共识。在项目中，我通常会主动倾听不同角色的担心，再把目标、流程和反馈机制讲清楚，帮助团队更稳定地推进。",
+        report: `一句话总结：你的结果呈现出很强的“助人成长”和“组织连接”特征。SEA 说明你对人、表达和影响力有明显兴趣；ENFJ 则显示你在团队场景中更容易进入状态，愿意看见他人的潜力，也愿意把一个松散的目标组织成大家能理解、愿意参与的行动。
+
+你的核心优势不是单纯外向，而是能把情绪、目标和行动连接起来。很多人会沟通，但不一定能听懂对方真正担心什么；很多人愿意帮忙，但不一定能把帮助变成稳定的方法。你比较突出的地方，是既能感知人的需求，又愿意推动事情落地。这种能力在培训课程、客户成功、社群运营、人力资源、教师助教、用户研究等方向里都很重要。
+
+你和别人不同的地方，是你会自然地关注“这个人为什么卡住”“团队为什么没有共识”“怎样表达对方才愿意行动”。这让你适合站在用户、学员、客户或团队成员的视角思考问题。求职时，你可以把自己的优势表达为：擅长需求倾听、关系协调、活动组织、反馈收集和成长型沟通。不要只说自己“喜欢和人打交道”，那太宽泛；要讲清楚你如何把沟通转化为结果。
+
+推荐岗位上，你适合优先探索培训/课程顾问、客户成功、社群运营、人力资源、教师/助教等方向。它们都需要你持续理解人，并通过内容、流程或服务帮助对方前进。需要注意的是，你可能会因为太在意他人的评价而过度消耗，也可能在关系压力中不好意思拒绝。职业早期要建立边界：你可以温柔，但也需要清楚地说出优先级、资源限制和可交付范围。
+
+面试时，建议准备两个案例：一个体现你如何倾听需求，一个体现你如何推动协作。未来 30 天，可以先做一次小型活动、访谈或分享，把参与者反馈整理成报告。对你来说，最有说服力的作品不是华丽页面，而是“我理解了谁的问题，并让这件事变得更好”。`
+      },
+      {
+        code: "EAP-ENTP",
+        interestCode: "EAP",
+        style: "ENTP",
+        name: "机会型创意发明家",
+        stage: "转行探索者 / 创业预备期",
+        summary: "你对机会、表达和变化高度敏感，适合优先探索商业策划、市场增长、新媒体、AI 应用与创新项目。",
+        roleName: "火花实验员",
+        roleLine: "先让点子跑起来，再让数据告诉我们答案。",
+        colors: ["#ffd166", "#ff6b9a", "#39d7f4"],
+        stats: { interest: 90, clarity: 69, confidence: "中" },
+        scores: { R: 38, I: 64, A: 82, S: 56, E: 90, C: 42 },
+        axes: [
+          ["E", "外部驱动", 84, "越是有互动、反馈和竞争感，越容易进入状态。"],
+          ["N", "趋势洞察", 88, "擅长发现趋势、机会和不同资源之间的新连接。"],
+          ["T", "逻辑判断", 62, "会用效率和结果检验想法是否值得继续。"],
+          ["P", "探索适应", 82, "喜欢快速试错，在变化中寻找新路径。"]
+        ],
+        jobs: [
+          ["商务拓展", 88, "资源整合、谈判合作、机会捕捉"],
+          ["新媒体策划", 84, "创意策划、传播表达、趋势感"],
+          ["市场营销", 82, "用户需求、商业转化、传播影响"],
+          ["AI 应用运营", 78, "工具探索、内容设计、场景落地"],
+          ["创业/自由职业", 75, "机会识别、自我驱动、资源整合"],
+          ["产品经理", 72, "需求分析、跨部门推动、商业理解"],
+          ["内容运营", 70, "内容表达、用户互动、热点敏感"],
+          ["品牌策划", 66, "策略定位、审美判断、品牌表达"]
+        ],
+        strengths: ["机会识别", "创意突破", "快速试错", "商业嗅觉", "表达影响", "资源整合"],
+        warnings: [
+          "不建议优先选择长期重复、反馈慢、规则过细且创意空间很小的环境。",
+          "需要避免只追热点不复盘，好的机会感要配合数据和沉淀。",
+          "可信度为中，说明兴趣很活跃，但仍建议用真实项目验证长期投入度。"
+        ],
+        actions: [
+          "第 1 周：选 3 个感兴趣赛道，分别写出用户痛点、变现方式和传播入口。",
+          "第 2 周：用低成本方式发布一次内容、活动或落地页，收集真实反馈。",
+          "第 3 周：复盘数据，不只看热度，也看转化、留存和用户真实评价。",
+          "第 4 周：保留一个最有潜力方向，做成可展示的增长或策划案例。"
+        ],
+        interview: "我对新机会和用户反馈比较敏感，习惯先提出多个方案，再通过小规模测试筛选有效路径。我适合需要创意、商业判断和快速迭代的岗位，也会用数据复盘来约束想法。",
+        report: `一句话总结：你的结果像一个不断捕捉机会的创意雷达。EAP 说明你对商业机会、表达创意和变化空间有明显兴趣；ENTP 的职场风格显示，你更容易在讨论、试错、竞争和新鲜任务中释放能量。你不是特别适合一直待在固定流程里等指令，而是适合在不确定中寻找可能性。
+
+你的核心优势是“看见别人还没看见的连接”。你可能会把一个热点、一类用户需求、一个工具能力和一个商业场景迅速联系起来，然后提出新玩法。这种能力在商务拓展、新媒体策划、市场营销、AI 应用运营、创新项目和早期创业场景里很有价值。尤其当团队需要有人打开局面、提出方案、争取资源、测试方向时，你往往能带来速度和想象力。
+
+你和别人不同的地方，是你不太害怕变化，甚至会被变化激发。很多人需要规则清楚才敢行动，而你可能在规则还没完全成型时就想先试一版。这是优势，也是一把需要磨好的工具。优势在于你能抢先验证机会；风险在于如果缺少复盘，容易从一个点子跳到另一个点子，最后留下很多开头却缺少可复用成果。
+
+岗位上，你适合优先探索商务拓展、新媒体策划、市场营销、AI 应用运营、内容运营和产品经理等方向。这些岗位通常需要你理解用户、讲清价值、推动合作，并根据反馈快速迭代。需要避开的坑是：长期重复执行、反馈周期很慢、层级过多且没有试错空间的环境。你不是不能做稳定工作，而是如果完全没有变化和主动权，很可能难以保持兴奋。
+
+面试时，不要只强调“有创意”，建议讲一个你如何发现机会、设计测试、拿到反馈、再调整方案的案例。未来 30 天，你最该做的是把一个想法跑成小实验。哪怕只是一次内容发布、一次用户访谈或一个简单落地页，也比停留在灵感里更能证明你的商业判断。`
+      }
+    ];
+
+    let current = 0;
+
+    const $ = (id) => document.getElementById(id);
+
+    function countChineseReport(text) {
+      return text.replace(/\s/g, "").length;
+    }
+
+    function setAvatarColors(item) {
+      document.documentElement.style.setProperty("--avatar-a", item.colors[0]);
+      document.documentElement.style.setProperty("--avatar-b", item.colors[1]);
+      document.documentElement.style.setProperty("--avatar-c", item.colors[2]);
+    }
+
+    function renderRiasec(item) {
+      $("riasecList").innerHTML = Object.entries(item.scores)
+        .sort((a, b) => b[1] - a[1])
+        .map(([key, value]) => {
+          const info = colorMap[key];
+          return `<div class="score-row" style="--color:${info.color}">
+            <div class="score-name"><span class="color-dot"></span>${info.name}</div>
+            <div class="track"><div class="fill" style="--value:${value}%"></div></div>
+            <div class="score-num">${value}</div>
+          </div>`;
+        })
+        .join("");
+    }
+
+    function renderAxes(item) {
+      const axisColors = [
+        ["#39d7f4", "#9d7cff"],
+        ["#78e08f", "#ffd166"],
+        ["#ff6b9a", "#39d7f4"],
+        ["#ffd166", "#62e2ad"]
+      ];
+
+      $("styleAxes").innerHTML = item.axes.map((axis, index) => {
+        const [letter, label, pos, note] = axis;
+        const colors = axisColors[index];
+        return `<div class="axis" style="--left:${colors[0]};--right:${colors[1]};--accent:${colors[letter === "I" || letter === "N" || letter === "F" || letter === "P" ? 1 : 0]}">
+          <div class="axis-top"><span>${label}</span><span>${letter} · ${pos}%</span></div>
+          <div class="axis-line"><span class="axis-thumb" style="--pos:${pos}%"></span></div>
+          <div class="axis-note">${note}</div>
+        </div>`;
+      }).join("");
+    }
+
+    function renderJobs(item) {
+      const jobColors = ["#6df3ca", "#45d4ff", "#ffd166", "#ff8ab3", "#b49cff", "#78e08f", "#ffb36c", "#8ee6ff"];
+      $("jobs").innerHTML = item.jobs.map((job, index) => {
+        const level = index < 3 ? "强推荐" : "可探索";
+        return `<div class="job" style="--job:${jobColors[index]}">
+          <strong>${job[0]}</strong>
+          <span class="job-score">${job[1]} · ${level}</span>
+          <p>${job[2]}</p>
+        </div>`;
+      }).join("");
+    }
+
+    function renderList(id, items) {
+      $(id).innerHTML = items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function renderPills(item) {
+      const pillColors = ["#6df3ca", "#45d4ff", "#ffd166", "#ff8ab3", "#b49cff", "#78e08f"];
+      $("strengths").innerHTML = item.strengths.map((text, index) => `<span class="pill" style="--pill:${pillColors[index % pillColors.length]}">${text}</span>`).join("");
+    }
+
+    function render(index) {
+      const item = results[index];
+      setAvatarColors(item);
+      $("stage").textContent = item.stage;
+      $("resultCode").textContent = item.code;
+      $("careerName").textContent = item.name;
+      $("summary").textContent = item.summary;
+      $("interestMatch").textContent = item.stats.interest;
+      $("styleClarity").textContent = item.stats.clarity;
+      $("confidence").textContent = item.stats.confidence;
+      $("roleName").textContent = item.roleName;
+      $("roleLine").textContent = item.roleLine;
+      $("styleType").textContent = item.style;
+      $("interestCode").textContent = item.interestCode;
+      $("posterTitle").textContent = item.name;
+      $("posterLine").textContent = `${item.code} · 适合优先探索 ${item.jobs.slice(0, 3).map((job) => job[0]).join("、")}`;
+      $("posterQuote").textContent = item.roleLine;
+      $("aiReport").textContent = item.report;
+      $("reportCount").textContent = `约 ${countChineseReport(item.report)} 字`;
+      $("interview").textContent = item.interview;
+      renderRiasec(item);
+      renderAxes(item);
+      renderJobs(item);
+      renderPills(item);
+      renderList("warnings", item.warnings);
+      renderList("actions", item.actions);
+    }
+
+    $("switchResult").addEventListener("click", () => {
+      current = (current + 1) % results.length;
+      render(current);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    $("scrollReport").addEventListener("click", () => {
+      $("reportCard").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    render(current);
+  </script>
+</body>
+</html>
